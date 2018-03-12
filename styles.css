@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,300,100');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/weather-icons/1.3.2/css/weather-icons.min.css');
+
+body, html {
+    font-family: 'Roboto';
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    background-color: #ecf0f1;
+}
+
+.app {
+    font-size: 4em;
+    color: #2980b9;
+    text-shadow: 2px 2px 0px #2980b952;
+}
+
+.wi {
+    margin-top: -1em;
+    font-size: 3em;
+    line-height: 1.5em;
+}
