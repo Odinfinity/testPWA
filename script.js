@@ -1,5 +1,5 @@
 'use strict';
-const appId = '58b6f7c78582bffab3936dac99c31b25';
+const appId = 'b98298efed7ed28f5c559de0377cc1c7';
 const appNode = document.querySelector('.app');
 
 var options = {
@@ -7,25 +7,25 @@ var options = {
     timeout: 10000,
     maximumAge: 0
 };
+var skycons = new Skycons({"color": "black"});
 
 function drawResult(result) {
-    if (!result || !result.name) {
+    if (!result || !result.currently) {
         appNode.innerHTML = 'loading';
         return;
     }
-    localStorage.setItem('cachedWather', JSON.stringify(result));
-    // const icon = result.weather[0].description
-        // .replace('light ', '').replace(' ', '-');
-    const icon = `http://openweathermap.org/img/w/${result.weather[0].icon}.png`
-    const name = result.name;
-    const temp = result.main.temp;
-    //<div class="wi wi-${icon}"></div>
+
+    const name = result.currently.summary;
+    const temp = result.currently.temperature;
     appNode.innerHTML = `
-        <img src="${icon}"/>
         <div class="temp">${temp} °C</div>
         <div class="name">${name}</div>
     `;
+    skycons.add("icon1", result.currently.icon);
+    skycons.play();
 }
+
+
 
 function locationSuccess(pos) {
     fetchData(pos.coords).then(drawResult);
@@ -33,7 +33,7 @@ function locationSuccess(pos) {
 
 function fetchData(position) {
     return fetch(
-        `https://api.openweathermap.org/data/2.5/weather?appid=${appId}&lat=${position.latitude}&lon=${position.longitude}&units=metric`
+        `https://api.darksky.net/forecast/${appId}/${position.latitude},${position.longitude}?exclude=hourly,flags,daily&units=auto`
     ).then(result => result.json());
 }
 
@@ -42,4 +42,20 @@ function error(err) {
 }
 
 navigator.geolocation.getCurrentPosition(locationSuccess, error, options);
-drawResult(JSON.parse(localStorage.getItem('cachedWather') || '{}'));
+
+if ('serviceWorker' in navigator) {
+
+    navigator.serviceWorker
+        .register('service-worker.js')
+        .then(function(registration) {
+            // Registration Success
+            console.log(
+                '[serviceWorker]: registration successful with scope: ',
+                registration.scope
+            );
+        })
+        .catch(function(err) {
+            // Registration failed :(
+            console.log('[serviceWorker] registration failed', err);
+        });
+}

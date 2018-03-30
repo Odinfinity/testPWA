@@ -44,7 +44,7 @@ self.oninstall = function(event) {
 self.onfetch = function(event) {
     console.log('[serviceWorker]: Fetching ' + event.request.url);
     // One url we should ignore, for example data
-    const raceUrl = 'API/';
+    const raceUrl = 'api';
 
     // Make and cache the request
     if (event.request.url.indexOf(raceUrl) > -1) {
