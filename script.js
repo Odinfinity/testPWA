@@ -7,7 +7,7 @@ var options = {
     timeout: 10000,
     maximumAge: 0
 };
-var skycons = new Skycons({"color": "black"});
+var skycons = new Skycons({ color: 'black' });
 
 function drawResult(result) {
     if (!result || !result.currently) {
@@ -21,11 +21,9 @@ function drawResult(result) {
         <div class="temp">${temp} °C</div>
         <div class="name">${name}</div>
     `;
-    skycons.add("icon1", result.currently.icon);
+    skycons.add('icon1', result.currently.icon);
     skycons.play();
 }
-
-
 
 function locationSuccess(pos) {
     fetchData(pos.coords).then(drawResult);
@@ -33,7 +31,7 @@ function locationSuccess(pos) {
 
 function fetchData(position) {
     return fetch(
-        `https://api.darksky.net/forecast/${appId}/${position.latitude},${position.longitude}?exclude=hourly,flags,daily&units=auto`
+        `https://wt-7c34bb748e3e4073b3f657c0ae1afac9-0.run.webtask.io/weather?lan=${position.latitude}&lon=${position.longitude}`
     ).then(result => result.json());
 }
 
@@ -41,10 +39,14 @@ function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
 }
 
-navigator.geolocation.getCurrentPosition(locationSuccess, error, options);
-
+// navigator.geolocation.getCurrentPosition(locationSuccess, error, options);
+locationSuccess({
+    coords: {
+        latitude: '55.7786426',
+        longitude: '37.5880753'
+    }
+});
 if ('serviceWorker' in navigator) {
-
     navigator.serviceWorker
         .register('service-worker.js')
         .then(function(registration) {

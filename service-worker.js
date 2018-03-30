@@ -6,6 +6,7 @@ const urlsToCache = [
     './index.html',
     './manifest.json',
     './script.js',
+    './skycons.js',
     './styles.css',
     './assets/icons/android-chrome-192x192.png',
     './assets/icons/android-chrome-512x512.png',
