@@ -19,9 +19,9 @@ function drawResult(result) {
     const icon = `http://openweathermap.org/img/w/${result.weather[0].icon}.png`
     const name = result.name;
     const temp = result.main.temp;
-
+    //<div class="wi wi-${icon}"></div>
     appNode.innerHTML = `
-        <div class="wi wi-${icon}"></div>
+        <img src="${icon}"/>
         <div class="temp">${temp} °C</div>
         <div class="name">${name}</div>
     `;
