@@ -14,7 +14,9 @@ function drawResult(result) {
         return;
     }
     localStorage.setItem('cachedWather', JSON.stringify(result));
-    const icon = result.weather[0].description.replace('light ', '').replace(' ', '-');
+    // const icon = result.weather[0].description
+        // .replace('light ', '').replace(' ', '-');
+    const icon = `http://openweathermap.org/img/w/${result.weather[0].icon}.png`
     const name = result.name;
     const temp = result.main.temp;
 
