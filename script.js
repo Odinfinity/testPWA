@@ -3,9 +3,9 @@ const appId = '58b6f7c78582bffab3936dac99c31b25';
 const appNode = document.querySelector('.app');
 
 var options = {
-  enableHighAccuracy: false,
-  timeout: 10000,
-  maximumAge: 0
+    enableHighAccuracy: false,
+    timeout: 10000,
+    maximumAge: 0
 };
 
 function drawResult(result) {
@@ -25,18 +25,19 @@ function drawResult(result) {
     `;
 }
 
-
 function locationSuccess(pos) {
-  fetchData(pos.coords).then(drawResult);
-};
+    fetchData(pos.coords).then(drawResult);
+}
 
 function fetchData(position) {
-    return fetch(`http://api.openweathermap.org/data/2.5/weather?appid=${appId}&lat=${position.latitude}&lon=${position.longitude}&units=metric`).then(result => result.json());
+    return fetch(
+        `http://api.openweathermap.org/data/2.5/weather?appid=${appId}&lat=${position.latitude}&lon=${position.longitude}&units=metric`
+    ).then(result => result.json());
 }
 
 function error(err) {
-  console.warn(`ERROR(${err.code}): ${err.message}`);
-};
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+}
 
 navigator.geolocation.getCurrentPosition(locationSuccess, error, options);
 drawResult(JSON.parse(localStorage.getItem('cachedWather') || '{}'));
