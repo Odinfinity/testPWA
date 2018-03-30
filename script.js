@@ -31,7 +31,7 @@ function locationSuccess(pos) {
 
 function fetchData(position) {
     return fetch(
-        `http://api.openweathermap.org/data/2.5/weather?appid=${appId}&lat=${position.latitude}&lon=${position.longitude}&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?appid=${appId}&lat=${position.latitude}&lon=${position.longitude}&units=metric`
     ).then(result => result.json());
 }
 
