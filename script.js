@@ -14,7 +14,7 @@ function drawResult(result) {
         return;
     }
     localStorage.setItem('cachedWather', JSON.stringify(result));
-    const icon = result.weather[0].description.replace('light ', '');
+    const icon = result.weather[0].description.replace('light ', '').replace(' ', '-');
     const name = result.name;
     const temp = result.main.temp;
 
