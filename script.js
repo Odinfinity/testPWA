@@ -2,6 +2,22 @@
 const appId = 'b98298efed7ed28f5c559de0377cc1c7';
 const appNode = document.querySelector('.app');
 
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker
+        .register('service-worker.js')
+        .then(function(registration) {
+            // Registration Success
+            console.log(
+                '[serviceWorker]: registration successful with scope: ',
+                registration.scope
+            );
+        })
+        .catch(function(err) {
+            // Registration failed :(
+            console.log('[serviceWorker] registration failed', err);
+        });
+}
+
 var options = {
     enableHighAccuracy: false,
     timeout: 10000,
@@ -10,6 +26,7 @@ var options = {
 var skycons = new Skycons({ color: 'black' });
 
 function drawResult(result) {
+    console.log(result);
     if (!result || !result.currently) {
         appNode.innerHTML = 'loading';
         return;
@@ -26,7 +43,7 @@ function drawResult(result) {
 }
 
 function locationSuccess(pos) {
-    fetchData(pos.coords).then(drawResult);
+    return fetchData(pos.coords).then(drawResult);
 }
 
 function fetchData(position) {
@@ -46,18 +63,3 @@ locationSuccess({
         longitude: '37.5880753'
     }
 });
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-        .register('service-worker.js')
-        .then(function(registration) {
-            // Registration Success
-            console.log(
-                '[serviceWorker]: registration successful with scope: ',
-                registration.scope
-            );
-        })
-        .catch(function(err) {
-            // Registration failed :(
-            console.log('[serviceWorker] registration failed', err);
-        });
-}
