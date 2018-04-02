@@ -49,7 +49,8 @@ function locationSuccess(pos) {
 function fetchData(position) {
     return fetch(
         `https://wt-7c34bb748e3e4073b3f657c0ae1afac9-0.run.webtask.io/weather?lan=${position.latitude}&lon=${position.longitude}`
-    ).then(result => result.json());
+    ).then(result => result.json())
+    .catch(err => console.log(err));
 }
 
 function error(err) {

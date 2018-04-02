@@ -45,7 +45,7 @@ self.oninstall = function(event) {
 self.onfetch = function(event) {
     console.log('[serviceWorker]: Fetching ' + event.request.url);
     // One url we should ignore, for example data
-    const raceUrl = 'run.webtask.io';
+    const raceUrl = 'api';
     // Make and cache the request
     if (event.request.url.includes(raceUrl)) {
         event.respondWith(
