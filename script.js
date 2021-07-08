@@ -36,12 +36,10 @@ function drawResult(result) {
     const temp = result.currently.temperature;
     const name = result.currently.summary;
     const rain = result.currently.precipProbability;
-    const name2 = result.minutely.summary;
     const feel = result.currently.apparentTemperature;
     appNode.innerHTML = `
         <div class="temp">${temp} °F</div>
         <div class="name">${name}</div>
-        <div class="name2">${name2}</div>
         <div class="rain">${rain}% Chance of rain.</div>
         <div class="feel">${feel} °F</div>
     `;
