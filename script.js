@@ -32,11 +32,18 @@ function drawResult(result) {
         return;
     }
 
-    const name = result.currently.summary;
+
     const temp = result.currently.temperature;
+    const name = result.currently.summary;
+    const rain = result.currently.precipProbability;
+    const name2 = result.minutely.summary;
+    const feel = result.currently.apparentTemperature;
     appNode.innerHTML = `
-        <div class="temp">${temp} °C</div>
+        <div class="temp">${temp} °F</div>
         <div class="name">${name}</div>
+        <div class="name2">${name2}</div>
+        <div class="rain">${rain}% Chance of rain.</div>
+        <div class="feel">${feel} °F</div>
     `;
     skycons.add('icon1', result.currently.icon);
     skycons.play();
@@ -60,7 +67,7 @@ function error(err) {
 // navigator.geolocation.getCurrentPosition(locationSuccess, error, options);
 locationSuccess({
     coords: {
-        latitude: '55.7786426',
-        longitude: '37.5880753'
+        latitude: '36.253419',
+        longitude: '-95.704065'
     }
 });
