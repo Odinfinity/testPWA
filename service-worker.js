@@ -1,4 +1,4 @@
-const CACHE_NAME = 'simple-weather';
+const CACHE_NAME = 'testPWA';
 
 // Files to cache, skeleton of the app
 const urlsToCache = [
